@@ -1,0 +1,20 @@
+# docker-compose up
+
+version: '3.3'
+services:
+  backend:
+    container_name: media_server
+    restart: always
+    build: .
+    image: media-server
+    ports:
+      - 8080:8080
+  database:
+    container_name: postgres_database
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=password131415
+      - POSTGRES_DB=mediaserver
+    volumes:
+      - /database_data:/var/lib/postgresql/data
